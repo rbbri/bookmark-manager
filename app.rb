@@ -2,7 +2,7 @@ require 'sinatra/base'
 
 class BookmarkManager < Sinatra::Base
   get '/' do
-    'Hello World'
+    erb :index
   end
 
   run! if app_file == $0
