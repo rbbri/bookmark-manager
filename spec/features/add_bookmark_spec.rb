@@ -1,6 +1,4 @@
 feature 'adding a bookmark' do
-  connection = PG.connect(dbname: 'bookmark_manager_test')
-
   scenario 'a user clicks add link and is presented with a form' do
     visit '/'
     click_button('Add link')
