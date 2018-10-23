@@ -13,7 +13,6 @@ feature 'adding a bookmark' do
     fill_in 'title', with: 'The Guardian'
     fill_in 'url', with: 'http://www.theguardian.co.uk'
     click_button 'Save'
-    expect(page).to have_content 'The Guardian'
-    expect(page).to have_content 'http://www.theguardian.co.uk'
+    expect(page).to have_link('The Guardian', href: 'http://www.theguardian.co.uk')
   end
 end

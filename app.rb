@@ -7,14 +7,10 @@ class BookmarkManager < Sinatra::Base
     erb :index
   end
 
-  get '/add' do
-    erb :add
-  end
-
   post '/bookmarks' do
     title = params[:title]
     url = params[:url]
-    Bookmark.create(title)
+    Bookmark.create(title, url)
     redirect '/bookmarks'
   end
 
