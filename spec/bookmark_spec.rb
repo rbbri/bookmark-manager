@@ -17,9 +17,9 @@ describe 'Bookmark' do
     end
   end
 
-  describe '#create' do
+  describe '.create' do
     it 'creates a new bookmark' do
-      subject.create('The Guardian', 'https://www.theguardian.co.uk')
+      Bookmark.create('The Guardian', 'https://www.theguardian.co.uk')
       bookmarks = Bookmark.all
       expect(bookmarks).to include('The Guardian', 'https://www.theguardian.co.uk')
     end
