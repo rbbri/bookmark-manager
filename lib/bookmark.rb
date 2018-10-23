@@ -9,7 +9,7 @@ class Bookmark
       connection = PG.connect(dbname: 'bookmark_manager')
     end
       result = connection.exec("SELECT * FROM bookmarks;")
-      result.map { |bookmark| bookmark['url'] }
+      result.map { |bookmark| [bookmark['title'], bookmark['url']].join }
   end
 
 end
