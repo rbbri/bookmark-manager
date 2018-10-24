@@ -28,5 +28,11 @@ class BookmarkManager < Sinatra::Base
     erb :"bookmarks/delete"
   end
 
+  post '/bookmarks/deleted' do
+    @bookmarks = Bookmark.all
+    Bookmark.delete(params["#{bookmarks.id}"])
+    redirect '/bookmarks/delete'
+  end
+
   run! if app_file == $PROGRAM_NAME
 end

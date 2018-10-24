@@ -23,9 +23,9 @@ attr_reader :id, :title, :url
     @@connection.exec("INSERT INTO bookmarks (title, url) VALUES ('#{title}', '#{url}');")
   end
 
-  def self.delete(title)
+  def self.delete(id)
     test_setup
-    @@connection.exec("DELETE FROM bookmarks WHERE title = '#{title}';")
+    @@connection.exec("DELETE FROM bookmarks WHERE id = '#{id}';")
   end
 
 

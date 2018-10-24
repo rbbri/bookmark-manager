@@ -24,9 +24,10 @@ describe 'Bookmark' do
   end
   describe '.delete' do
     it 'deletes a  bookmark' do
-      Bookmark.create('The Guardian', 'https://www.theguardian.co.uk')
-      Bookmark.delete('The Guardian')
+      bookmark = Bookmark.create('The Guardian', 'https://www.theguardian.co.uk')
       bookmarks = Bookmark.all
+      Bookmark.delete(bookmarks[0].id)
+
       expect(bookmarks).not_to include('The Guardian')
     end
   end
