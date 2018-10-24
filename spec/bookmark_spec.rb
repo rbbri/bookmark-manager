@@ -22,4 +22,12 @@ describe 'Bookmark' do
       expect(bookmarks.first.title).to eq('The Guardian')
     end
   end
+  describe '.delete' do
+    it 'deletes a  bookmark' do
+      Bookmark.create('The Guardian', 'https://www.theguardian.co.uk')
+      Bookmark.delete('The Guardian')
+      bookmarks = Bookmark.all
+      expect(bookmarks).not_to include('The Guardian')
+    end
+  end
 end
