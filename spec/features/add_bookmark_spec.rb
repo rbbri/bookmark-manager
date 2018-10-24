@@ -1,6 +1,6 @@
 feature 'adding a bookmark' do
   scenario 'a user clicks add link and is presented with a form' do
-    visit '/'
+    visit '/bookmarks'
     click_button('Add link')
     expect(page).to have_content 'Enter title of bookmark'
     expect(page).to have_content 'Enter url'
@@ -8,7 +8,7 @@ feature 'adding a bookmark' do
     expect(page). to have_field 'url'
   end
   scenario 'a user adds a link and the link is saved' do
-    visit '/'
+    visit '/bookmarks'
     click_button('Add link')
     fill_in 'title', with: 'The Guardian'
     fill_in 'url', with: 'http://www.theguardian.co.uk'

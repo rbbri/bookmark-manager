@@ -1,0 +1,14 @@
+<p>Bookmark Manager
+<form action='bookmarks/new'>
+  <input type='submit' value='Add link'>
+</form>
+
+  <h1>Bookmarks</h1>
+  <% @bookmarks.each do |bookmark| %>
+  <a href='<%= bookmark.url %>'><%= bookmark.title %></a>
+    <form action="/bookmarks/<%= bookmark.id %>" method="post">
+      <input name='_method' type='hidden' value='DELETE'>
+      <input id='<%= bookmark.id %>' type='submit' value='Delete'>
+    </form>
+
+  <% end %>

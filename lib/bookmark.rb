@@ -25,7 +25,7 @@ attr_reader :id, :title, :url
 
   def self.delete(id)
     test_setup
-    @@connection.exec("DELETE FROM bookmarks WHERE id = '#{id}';")
+    @@connection.exec("DELETE FROM bookmarks WHERE id='#{id}';")
   end
 
 
