@@ -1,20 +1,21 @@
 require 'bookmark'
 require 'pg'
+require 'database_connection.rb'
 
 describe 'Bookmark' do
   describe '.all' do
     it 'returns a list of bookmarks' do
       Bookmark.create(
         title: 'Makers Academy',
-        url:'http://www.makersacademy.com'
+        url: 'http://www.makersacademy.com'
       )
       Bookmark.create(
         title: 'Destroy All Software',
-        url:'http://www.destroyallsoftware.com'
+        url: 'http://www.destroyallsoftware.com'
       )
       Bookmark.create(
         title: 'Google',
-        url:'http://www.google.com'
+        url: 'http://www.google.com'
       )
       bookmarks = Bookmark.all
       expect(bookmarks.length).to eq 3
@@ -28,7 +29,7 @@ describe 'Bookmark' do
     it 'creates a new bookmark' do
       Bookmark.create(
         title: 'The Guardian',
-        url:'https://www.theguardian.co.uk'
+        url: 'https://www.theguardian.co.uk'
       )
       bookmarks = Bookmark.all
       expect(bookmarks.first.title).to eq('The Guardian')
@@ -38,7 +39,7 @@ describe 'Bookmark' do
     it 'deletes a  bookmark' do
       Bookmark.create(
         title: 'The Guardian',
-        url:'https://www.theguardian.co.uk'
+        url: 'https://www.theguardian.co.uk'
       )
       bookmarks = Bookmark.all
       Bookmark.delete(id: bookmarks[0].id)
@@ -50,7 +51,8 @@ describe 'Bookmark' do
     it 'updates a bookmark' do
       bookmark = Bookmark.create(
         title: 'Makers Academy',
-        url:'http://www.makersacademy.com')
+        url: 'http://www.makersacademy.com'
+      )
       updated_bookmark = Bookmark.update(
         id: bookmark.id,
         title: 'The Guardian',
@@ -62,5 +64,4 @@ describe 'Bookmark' do
       expect(updated_bookmark.url).to eq 'https://www.theguardian.co.uk'
     end
   end
-
 end

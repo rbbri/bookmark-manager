@@ -9,8 +9,8 @@ group :test do
   gem 'rspec'
 end
 gem 'pg'
+gem 'pry'
 gem 'rake'
 gem 'rubocop'
 gem 'simplecov'
 gem 'sinatra'
-gem 'pry'
