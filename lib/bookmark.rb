@@ -12,22 +12,47 @@ attr_reader :id, :title, :url
 
   def self.all
     test_setup
-    result = @@connection.exec('SELECT * FROM bookmarks;')
-    result.map do |bookmark|
-      Bookmark.new(id: bookmark['id'], title: bookmark['title'], url: bookmark['url'])
+    bookmarks = @@connection.exec('SELECT * FROM bookmarks;')
+    bookmarks.map do |bookmark|
+      Bookmark.new(
+        id: bookmark['id'],
+        title: bookmark['title'],
+        url: bookmark['url']
+      )
     end
   end
 
-  def self.create(title, url)
+  def self.create(title:, url:)
     test_setup
-    @@connection.exec("INSERT INTO bookmarks (title, url) VALUES ('#{title}', '#{url}');")
+    bookmark = @@connection.exec("INSERT INTO bookmarks (title, url)
+      VALUES ('#{title}', '#{url}')
+      RETURNING id, title, url;"
+      )
+      Bookmark.new(
+        id: bookmark[0]['id'],
+        title: bookmark[0]['title'],
+        url: bookmark[0]['url']
+      )
   end
 
-  def self.delete(id)
+  def self.delete(id:)
     test_setup
     @@connection.exec("DELETE FROM bookmarks WHERE id='#{id}';")
   end
 
+  def self.update(id:, title:, url:)
+    test_setup
+    bookmark = @@connection.exec(
+      "UPDATE bookmarks
+      SET title='#{title}', url='#{url}'
+      WHERE id= '#{id}'
+      RETURNING id, url, title;")
+      Bookmark.new(
+        id: bookmark[0]['id'],
+        title: bookmark[0]['title'],
+        url: bookmark[0]['url']
+      )
+  end
 
 def self.test_setup
   @@connection = if ENV['ENVIRONMENT'] == 'test'

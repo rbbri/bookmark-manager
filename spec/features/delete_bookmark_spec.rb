@@ -1,7 +1,7 @@
 feature 'deleting a bookmark' do
 
   scenario 'a user deletes a bookmark' do
-    Bookmark.create('Makers Academy', 'http://www.makersacademy.com')
+    Bookmark.create(title: 'Makers Academy', url: 'http://www.makersacademy.com')
 
     visit '/bookmarks'
     expect(page).to have_link('Makers Academy', href: 'http://www.makersacademy.com')

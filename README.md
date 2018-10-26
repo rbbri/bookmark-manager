@@ -10,4 +10,9 @@ So that I can save a website
 I would like to add the site's address and title to bookmark manager
 ```
 
+```
+As a user
+So I can manage my bookmarks
+I would like to be able to delete a bookmark
+```
 [logo]: image.png
